@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
+    entrypoint: ["sh", "/usr/src/chat-app/entrypoint.sh"] # new
+    volumes:
+      - "./services/backend:/usr/src/chat-app"
+    ports:
+      - 5004:5000
+    environment:
+      - FLASK_ENV=development
+      - APP_SETTINGS=app.config.DevelopmentConfig
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/app_dev
+      - SECRET_KEY=secret
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./services/db
+      dockerfile: Dockerfile
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
