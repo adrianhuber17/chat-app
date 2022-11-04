@@ -28,7 +28,7 @@ def create_app(script_info=None):
     db.init_app(app)
 
     #register api
-    from backend.app.api import api
+    from app.api import api
     api.init_app(app)
 
     @app.shell_context_processor
