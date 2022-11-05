@@ -27,3 +27,20 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  websocket:
+    build:
+      context: ./services/websocket
+      dockerfile: Dockerfile
+    entrypoint: ["sh", "/usr/src/chat-app/entrypoint_socket.sh"] # new
+    volumes:
+      - "./services/websocket:/usr/src/chat-app"
+    ports:
+      - 5001:5001
+    environment:
+      - FLASK_ENV=development
+      - APP_SETTINGS=app.config_socket.DevelopmentConfig
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/app_dev
+      - SECRET_KEY=secret
+    depends_on:
+      - db
