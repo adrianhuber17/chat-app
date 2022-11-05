@@ -23,6 +23,11 @@ class Messages(Resource):
         post_data = request.get_json()
         text = post_data.get('text')
         latest_message = add_message(text)
+
+        if latest_message["status"] == "error":
+            print(latest_message)
+            return latest_message,400
+
         return latest_message,200
 
 

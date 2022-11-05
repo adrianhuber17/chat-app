@@ -11,12 +11,17 @@ def get_all_messages():
 def add_message(text):
     "add a message to the db"
 
+    if text.strip() == "":
+        return {"status":"error","message":"text is empty"}
+
     message = Message(text=text)
     db.session.add(message)
     db.session.commit()
-    message_json = {"id":message.id,
-                    "text":message.text,
-                    "date":f"{message.date.year}-{message.date.month}-{message.date.day}"
+    message_json = {"status":"ok",
+                    "message":{"id":message.id,
+                                "text":message.text,
+                                "date":f"{message.date.year}-{message.date.month}-{message.date.day}"
+                                }
                     }
     
     return message_json
