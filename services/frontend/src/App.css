@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+  margin: 66px;
+  border-style: solid;
+  border-color: deeppink;
+  margin-top: 20px;
 }
 
 .App-logo {
@@ -35,4 +44,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.message {
+  color: deeppink;
+}
+
+.list-message {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
