@@ -28,6 +28,22 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
+  frontend:
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./services/frontend:/usr/src/chat-app"
+      - "/usr/src/chat-app/node_modules"
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_BACKEND_SERVICE_URL=http://localhost:5004
+      # - REACT_APP_WEBSOCKET_SERVICE_URL=http://localhost:5001
+    depends_on:
+      - backend
+
   websocket:
     build:
       context: ./services/websocket
