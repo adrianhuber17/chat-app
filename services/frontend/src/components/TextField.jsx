@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TextField({ messages, setMessages }) {
+export default function TextField({ messages, setMessages, socket }) {
   const [inputValue, setInputValue] = useState("");
 
   function handleClick() {
@@ -19,6 +19,8 @@ export default function TextField({ messages, setMessages }) {
         const updatedMessages = [...messages, responseData.message];
         setMessages(updatedMessages);
         setInputValue("");
+
+        socket.emit("new_message", responseData.message);
       });
   }
   function handleTyping(event) {

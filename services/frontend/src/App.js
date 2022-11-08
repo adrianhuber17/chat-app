@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 
 function App() {
   const [messages, setMessages] = useState([]);
-  // const [socketInstance, setSocketInstance] = useState("");
+  const [socketInstance, setSocketInstance] = useState("");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_SERVICE_URL}/messages`)
@@ -23,16 +23,24 @@ function App() {
         withCredentials: true,
       },
     });
-    // setSocketInstance(socket);
+    setSocketInstance(socket);
 
     socket.on("connect", (data) => {
       console.log("socket - connected users:", data);
     });
 
     socket.on("disconnect", (data) => {
-      console.log("connected");
       console.log("socket - disconnect users:", data);
     });
+
+    socket.on("new_message", (data) => {
+      console.log(data);
+    });
+
+    return function cleanup() {
+      console.log("clean up");
+      socket.disconnect();
+    };
   }, []);
   return (
     <div className="App">
@@ -41,7 +49,11 @@ function App() {
       ) : (
         <p>No Messages</p>
       )}
-      <TextField messages={messages} setMessages={setMessages} />
+      <TextField
+        socket={socketInstance}
+        messages={messages}
+        setMessages={setMessages}
+      />
     </div>
   );
 }
