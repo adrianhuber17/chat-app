@@ -7,6 +7,7 @@ import { io } from "socket.io-client";
 function App() {
   const [messages, setMessages] = useState([]);
   const [socketInstance, setSocketInstance] = useState("");
+  // const [socketMessage, setSocketMessage] = useState("");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_SERVICE_URL}/messages`)
@@ -34,6 +35,8 @@ function App() {
     });
 
     socket.on("new_message", (data) => {
+      const updatedMessages = [...messages, data];
+      setMessages(updatedMessages);
       console.log(data);
     });
 
@@ -41,7 +44,7 @@ function App() {
       console.log("clean up");
       socket.disconnect();
     };
-  }, []);
+  }, [messages]);
   return (
     <div className="App">
       {messages.length !== 0 ? (
