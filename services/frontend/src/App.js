@@ -26,8 +26,12 @@ function App() {
     // setSocketInstance(socket);
 
     socket.on("connect", (data) => {
-      console.log("connected");
       console.log("socket - connected users:", data);
+    });
+
+    socket.on("disconnect", (data) => {
+      console.log("connected");
+      console.log("socket - disconnect users:", data);
     });
   }, []);
   return (
