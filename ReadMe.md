@@ -8,15 +8,15 @@ The chat app GETs all historical messages on the rendering of the page, POSTs ne
 
 # Tech Stack 📚
 
-**Client:** ReactJS, JavaScript, socket.io
+**Client:** JavaScript, ReactJS, socket.io
 
-**Server:** Python, Flask, Flask-RESTx, SQLAlchemy, PostgreSQL, flask-socketio
+**Server:** Python, Flask, Flask-RESTX, gunicorn, SQLAlchemy, flask-socketio
 
 **Database:** PostgreSQL
 
 **Other:** Docker
 
-# Configuring the repo for the first time and running application
+# Configuring the repo for the first time and running the application
 
 ## Docker
 
@@ -31,7 +31,6 @@ The instructions below will allow you to run this project on your local computer
 ```
 
 - Navigate into the new sub-folder created called **chat-app**.
-- Run the following commands to create an environment and install the dependencies:
 
 2. After the project repo is downloaded navigate into the project directory
 
@@ -55,15 +54,23 @@ At this point the container with the app should be running in your local compute
 
 Services are running on **Port 3000** (front-end React), **Port 5001** (back-end REST), **Port 5004** (back-end WebSocket). Please make sure you have no other app running on these ports
 
-Open a browser to the local host **http://localhost:3000/** and start enjoying the app.
+5. Run the following command to create and reset the Messages table in the database
+
+```bash
+docker-compose exec backend python manage.py reset_db
+```
+
+Open a browser to the local host **http://localhost:3000/** and start enjoying the app
 
 # Demo
+
+![](/ReadMe_images/demo.gif)
 
 ## Endpoints
 
 ### /messages
 
-the **/messages** endopint can take a GET and a POST as shown below. POST will save the message into the database ans GET will fetch all messages in the database.
+The **/messages** endopint can take a GET and a POST as shown below. POST will save the message into the database ans GET will fetch all messages in the database
 
 ```bash
 curl --header "Content-Type: application/json" \
