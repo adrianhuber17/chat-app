@@ -23,16 +23,16 @@ The instructions below will allow you to run this project on your local computer
 1. Run the following command in the terminal to download a copy of the repo to your local machine
 
 ```bash
-  git clone https://github.com/adrianhuber17/fitness-app.git
+  git clone https://github.com/adrianhuber17/chat-app.git
 ```
 
-- Navigate into the new sub-folder created called **fitness-app**.
+- Navigate into the new sub-folder created called **chat-app**.
 - Run the following commands to create an environment and install the dependencies:
 
 2. After the project repo is downloaded navigate into the project directory
 
 ```bash
-  cd fitness-app
+  cd chat-app
 ```
 
 3. Manually open Docker desktop or run the command below to open Docker
