@@ -1,6 +1,10 @@
 # Chat App -> a real time chat application
 
-Add information here....
+This repo was created to help users Dockerize an application that utilizes HTTP and WebSocket communication protocols.
+
+The app is a simple chat application that is built using React (front-end), Flask (back-end REST), Flask (back-end WebSocket), and PostgreSQL (db). All four of these services are then containerized using Docker.
+
+The chat app gets all historical messages on rendering of the page. Posts new messages to the database when a user submits the message. And also updates the messages posted in real-time to all the users.
 
 # Tech Stack 📚
 
@@ -12,9 +16,9 @@ Add information here....
 
 **Other:** Docker
 
-## Configuring the repo for the first time and running application
+# Configuring the repo for the first time and running application
 
-### Docker
+## Docker
 
 To be able to run this project you will need Docker Desktop installed on your computer. Docker installation instructions: `https://www.docker.com/products/docker-desktop/`
 
@@ -52,3 +56,19 @@ At this point the container with the app should be running in your local compute
 Services are running on **Port 3000** (front-end React), **Port 5001** (back-end REST), **Port 5004** (back-end WebSocket). Please make sure you have no other app running on these ports
 
 Open a browser to the local host **http://localhost:3000/** and start enjoying the app.
+
+# Demo
+
+## Endpoints
+
+### /messages
+
+### /ping
+
+There is also a second endpoint to test a simple response and confirm that the app is running
+
+```bash
+curl  http://127.0.0.1:5004/ping
+```
+
+![](/ReadMe_images/curl_ping.png)
