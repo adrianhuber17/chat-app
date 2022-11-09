@@ -2,9 +2,9 @@
 
 This repo was created to help users Dockerize an application that utilizes HTTP and WebSocket communication protocols.
 
-The app is a simple chat application that is built using React (front-end), Flask (back-end REST), Flask (back-end WebSocket), and PostgreSQL (db). All four of these services are then containerized using Docker.
+The app is a simple chat application that is built using React (front-end), Flask REST (back-end), Flask WebSocket (back-end), and PostgreSQL (db).
 
-The chat app gets all historical messages on rendering of the page. Posts new messages to the database when a user submits the message. And also updates the messages posted in real-time to all the users.
+The chat app GETs all historical messages on the rendering of the page, POSTs new messages to the database when a user submits the message and also updates the messages posted in real-time for all the users to see.
 
 # Tech Stack 📚
 
@@ -62,6 +62,23 @@ Open a browser to the local host **http://localhost:3000/** and start enjoying t
 ## Endpoints
 
 ### /messages
+
+the **/messages** endopint can take a GET and a POST as shown below. POST will save the message into the database ans GET will fetch all messages in the database.
+
+```bash
+curl --header "Content-Type: application/json" \
+--request POST \
+--data '{"text":"Second message!"}' \
+http://127.0.0.1:5004/messages
+```
+
+![](/ReadMe_images/post_message.png)
+
+```bash
+curl "http://127.0.0.1:5004/messages"
+```
+
+![](/ReadMe_images/get_message.png)
 
 ### /ping
 
