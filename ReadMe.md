@@ -1,6 +1,6 @@
 # Chat App: a real time chat application
 
-This repo was created to help users Dockerize an application that utilizes HTTP and WebSocket communication protocols.
+This repo was created to help users Dockerize Flask + React + PostgreSQL application that uses HTTP and WebSocket communication protocols.
 
 The app is a simple chat application that is built using React (front-end), Flask REST (back-end), Flask WebSocket (back-end), and PostgreSQL (db).
 
